@@ -1,0 +1,14 @@
+# Godot 4+ 专用忽略
+.godot/
+
+# Godot 通用忽略
+.import/
+export.cfg
+export_credentials.cfg
+*.tmp
+*.translation
+
+# Mono 专用（如果你不用 C# 可以留着，不影响）
+.mono/
+data_*/
+mono_crash.*.json
