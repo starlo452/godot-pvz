@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceLevelData" format=3 uid="uid://dhyykgk1tvkcp"]
+
+[ext_resource type="Script" uid="uid://bke3sg5otco7s" path="res://scripts/resources/level/pre_plant_in_level.gd" id="1_lpf18"]
+[ext_resource type="Script" uid="uid://brtidnnpm2a7x" path="res://scripts/resources/card/card_reference.gd" id="2_ncx4t"]
+[ext_resource type="Script" uid="uid://dt2wj1hnyu2es" path="res://scripts/resources/card/card_weight.gd" id="3_kskyr"]
+[ext_resource type="Script" uid="uid://bjt3l56exxmdw" path="res://scripts/resources/level/level_data.gd" id="4_r4m4r"]
+
+[resource]
+script = ExtResource("4_r4m4r")
+zombie_multy = 10
+max_wave = 10

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bpbhvsfak8ne3"]
+
+[ext_resource type="Script" uid="uid://c7ic3c46u6mrj" path="res://scripts/cheat/dev_console.gd" id="1_jvawq"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=613774391]
+script = ExtResource("1_jvawq")
+
+[node name="Panel" type="Panel" parent="." unique_id=1840836223]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel" unique_id=1173961593]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LineEdit" type="LineEdit" parent="Panel" unique_id=1029922242]
+layout_mode = 0
+offset_right = 68.5
+offset_bottom = 31.0

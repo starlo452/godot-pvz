@@ -29,6 +29,8 @@ AllCards="*res://scenes/autoload/all_cards.tscn"
 GlobalUtils="*res://scripts/autoload/util/global_utils.gd"
 EventBus="*res://scripts/autoload/event_bus.gd"
 TreePauseManager="*res://scripts/autoload/tree_pause_manager.gd"
+CheatManager="*uid://hhxy1lha81u7"
+DevConsole="*uid://bpbhvsfak8ne3"
 
 [display]
 

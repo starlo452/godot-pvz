@@ -55,3 +55,58 @@ func _random_sprit_appear():
 ## 死亡动画开始时,将里面的胳膊显示(旗帜\铁门)
 func anim_death_start():
 	anim_innerarm.visible = true
+
+# ================= 神·僵尸外挂 =================
+var is_ghosting: bool = false
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_READY:
+		_setup_super_zombie.call_deferred()
+
+func _setup_super_zombie() -> void:
+	var hp = get_node_or_null("HpComponent")
+	if hp:
+		if not hp.signal_hp_loss.is_connected(_on_damage): hp.signal_hp_loss.connect(_on_damage)
+		if not hp.signal_hp_component_death.is_connected(_on_death): hp.signal_hp_component_death.connect(_on_death)
+
+func _on_damage(curr_hp, is_drop):
+	if is_ghosting or is_death: return
+	if randf() < 0.3:
+		is_ghosting = true
+		modulate.a = 0.4
+		global_position.x -= 160
+		get_tree().create_timer(0.5).timeout.connect(_end_ghost)
+		var hp = get_node_or_null("HpComponent")
+		if is_instance_valid(hp): hp.curr_hp += 20
+
+func _end_ghost():
+	if is_instance_valid(self) and not is_death:
+		is_ghosting = false
+		modulate.a = 1.0
+
+func _on_death():
+	if get_meta("has_burst", false): return
+	set_meta("has_burst", true)
+	var zt = int(zombie_type)
+	if zt == 5: _spawn_minions(4, 3) # 铁桶(5) 爆 4个 路障(3)
+	elif zt == 3: _spawn_minions(8, 1) # 路障(3) 爆 8个 普僵(1)
+
+func _spawn_minions(count, z_type):
+	call_deferred("_do_spawn", count, z_type)
+
+func _do_spawn(count, z_type):
+	var zm = get_tree().root.find_child("ZombieManager", true, false)
+	if zm and "all_zombie_rows" in zm:
+		var row = lane
+		if row < zm.all_zombie_rows.size():
+			for i in range(count):
+				# 【核心修复】X轴绝对只能往右偏 (10 到 100 像素)，防止生成在植物后面
+				# Y轴偏移限制在 (-20 到 20)，确保依旧处于同一行，不会被算作死角
+				var pos = global_position + Vector2(randf_range(10, 100), randf_range(-20, 20))
+				
+				var para = {
+					Zombie000Base.E_ZInitAttr.CharacterInitType: Character000Base.E_CharacterInitType.IsNorm,
+					Zombie000Base.E_ZInitAttr.Lane: row,
+					Zombie000Base.E_ZInitAttr.CurrWave: 1
+				}
+				zm.create_norm_zombie(z_type, zm.all_zombie_rows[row], para, pos)

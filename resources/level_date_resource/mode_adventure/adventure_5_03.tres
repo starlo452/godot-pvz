@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="ResourceLevelData" format=3 uid="uid://bvaaygylexhiu"]
+
+[ext_resource type="Script" uid="uid://bke3sg5otco7s" path="res://scripts/resources/level/pre_plant_in_level.gd" id="1_ch3cb"]
+[ext_resource type="Script" uid="uid://brtidnnpm2a7x" path="res://scripts/resources/card/card_reference.gd" id="2_pnqse"]
+[ext_resource type="Script" uid="uid://dt2wj1hnyu2es" path="res://scripts/resources/card/card_weight.gd" id="3_t2fi2"]
+[ext_resource type="Script" uid="uid://bjt3l56exxmdw" path="res://scripts/resources/level/level_data.gd" id="4_41ggl"]
+
+[sub_resource type="Resource" id="Resource_ch3cb"]
+script = ExtResource("1_ch3cb")
+plant_type = 34
+
+[sub_resource type="Resource" id="Resource_pnqse"]
+script = ExtResource("1_ch3cb")
+plant_type = 34
+plant_cell_pos = Vector2i(0, 1)
+
+[sub_resource type="Resource" id="Resource_t2fi2"]
+script = ExtResource("1_ch3cb")
+plant_type = 34
+plant_cell_pos = Vector2i(0, 2)
+
+[sub_resource type="Resource" id="Resource_41ggl"]
+script = ExtResource("1_ch3cb")
+plant_type = 34
+plant_cell_pos = Vector2i(0, 3)
+
+[sub_resource type="Resource" id="Resource_6aa26"]
+script = ExtResource("1_ch3cb")
+plant_type = 34
+plant_cell_pos = Vector2i(0, 4)
+
+[resource]
+script = ExtResource("4_41ggl")
+game_sences = 2
+game_BG = 4
+game_BGM = 4
+all_pre_plant_data = Array[ExtResource("1_ch3cb")]([SubResource("Resource_ch3cb"), SubResource("Resource_pnqse"), SubResource("Resource_t2fi2"), SubResource("Resource_41ggl"), SubResource("Resource_6aa26")])
+zombie_multy = 12
+max_wave = 40
+zombie_refresh_types = Array[int]([1, 3, 5, 19])
